@@ -19,16 +19,18 @@ body{background:#121010;color:#e8ddd5;font-family:'Inter',sans-serif;font-size:1
 .body{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
 .content{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
 
-/* ===== MOBILE NAV ===== */
-.mob-nav{display:none;height:54px;background:#1a1717;border-bottom:1px solid #2e2929;flex-shrink:0}
+/* ===== MOBILE BOTTOM NAV ===== */
+.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:60;height:60px;background:#1a1717;border-top:1px solid #2e2929;padding-bottom:env(safe-area-inset-bottom,0)}
 .mob-tabs{display:flex;height:100%;align-items:stretch}
-.mob-t{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;font-size:12px;font-weight:500;color:#7a6e66;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;padding:0 8px}
-.mob-t.on{color:#c47a50;border-bottom-color:#c47a50;background:rgba(196,122,80,.06)}
-.mob-t i{font-size:13px}
+.mob-t{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;font-weight:500;color:#7a6e66;cursor:pointer;transition:all .2s;position:relative}
+.mob-t.on{color:#c47a50}
+.mob-t.on::before{content:'';position:absolute;top:0;left:20%;right:20%;height:2px;background:#c47a50;border-radius:0 0 2px 2px}
+.mob-t i{font-size:17px;margin-bottom:1px}
 
 @media(max-width:768px){
   .side{display:none}
   .mob-nav{display:flex}
+  .body{padding-bottom:60px}
 }
 
 /* ===== SIDEBAR ===== */
@@ -44,22 +46,36 @@ body{background:#121010;color:#e8ddd5;font-family:'Inter',sans-serif;font-size:1
 .sb-stat::before{content:'';width:5px;height:5px;border-radius:50%;background:#6aad7a}
 
 /* ===== HEADERS ===== */
-.hdr{padding:14px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;border-bottom:1px solid #2e2929;background:#121010;flex-shrink:0;min-height:48px}
+.hdr{padding:14px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;border-bottom:1px solid #2e2929;background:#121010;flex-shrink:0;min-height:48px}
 
 /* ===== BUTTONS ===== */
-.bt{display:inline-flex;align-items:center;gap:4px;padding:7px 12px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;border:none;transition:all .12s;font-family:'Inter',sans-serif;white-space:nowrap;min-height:34px}
-.bt:active{transform:scale(.97)}
+.bt{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;border:none;transition:all .12s;font-family:'Inter',sans-serif;white-space:nowrap;min-height:36px}
+.bt:active{transform:scale(.96)}
 .bw{background:#c47a50;color:#121010}.bw:hover{background:#a8643e}
 .bg{background:transparent;color:#b5a89e;border:1px solid #2e2929}.bg:hover{background:#211e1e}
 .bd{background:rgba(196,90,90,.08);color:#c45a5a;border:1px solid rgba(196,90,90,.15)}.bd:hover{background:rgba(196,90,90,.18)}
 .bgr{background:rgba(106,173,122,.1);color:#6aad7a;border:1px solid rgba(106,173,122,.15)}.bgr:hover{background:rgba(106,173,122,.2)}
-.bi{padding:0;width:34px;height:34px;justify-content:center}
+.bi{padding:0;width:36px;height:36px;justify-content:center}
 .bs{padding:5px 9px;font-size:11px}
+
+/* Mobile: hide button labels, make icon-only */
+@media(max-width:768px){
+  .mob-lbl{display:none}
+  .bi{width:38px;height:38px}
+  .hdr{padding:10px 12px;gap:6px}
+}
 
 /* ===== BOOK PAGE ===== */
 .bkpg{background:#f3ece5;background-image:repeating-linear-gradient(transparent,transparent 28px,rgba(0,0,0,.05) 28px,rgba(0,0,0,.05) 29px),linear-gradient(90deg,rgba(196,122,80,.16) 52px,transparent 53px);padding:16px 18px 16px 48px;font-family:'Lora',serif;font-size:15px;line-height:28px;color:#2a1f1a;min-height:280px;border-radius:0 8px 8px 0;border-left:3px solid #c47a50;box-shadow:0 3px 16px rgba(0,0,0,.3)}
 .bkpg textarea{width:100%;min-height:240px;background:transparent;border:none;outline:none;color:#2a1f1a;font-family:'Lora',serif;font-size:15px;line-height:28px;resize:vertical;-webkit-appearance:none}
 .bkpg textarea::placeholder{color:rgba(42,31,26,.3);font-style:italic}
+
+/* Mobile book page: less margin, smaller lines */
+@media(max-width:768px){
+  .bkpg{padding:14px 12px 14px 22px;font-size:14px;line-height:24px;min-height:340px;border-radius:0 6px 6px 0;border-left-width:2px;background-image:repeating-linear-gradient(transparent,transparent 23px,rgba(0,0,0,.04) 23px,rgba(0,0,0,.04) 24px),linear-gradient(90deg,rgba(196,122,80,.14) 22px,transparent 23px)}
+  .bkpg textarea{font-size:14px;line-height:24px;min-height:320px}
+}
+
 .btab{padding:5px 10px;border-radius:7px;font-size:11px;font-weight:500;cursor:pointer;color:#7a6e66;border:1px solid transparent;white-space:nowrap;transition:all .2s}
 .btab:hover{color:#b5a89e}.btab.on{color:#c47a50;background:rgba(196,122,80,.08);border-color:rgba(196,122,80,.15)}
 .pdot{width:6px;height:6px;border-radius:50%;background:#2e2929;cursor:pointer;transition:all .3s;flex-shrink:0}
@@ -67,24 +83,33 @@ body{background:#121010;color:#e8ddd5;font-family:'Inter',sans-serif;font-size:1
 
 /* ===== CHAT ===== */
 .cbox{flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:0}
+@media(max-width:768px){.cbox{min-height:calc(100vh - 60px - 48px)}}
 .cmsgs{flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:6px;-webkit-overflow-scrolling:touch;min-height:0}
 .msg{max-width:80%;padding:9px 12px;border-radius:14px;font-size:13px;line-height:1.4;animation:mi .2s ease;word-wrap:break-word;overflow-wrap:break-word}
 @keyframes mi{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
 .msg.s{align-self:flex-end;background:#c47a50;color:#121010;border-bottom-right-radius:4px}
 .msg.r{align-self:flex-start;background:#211e1e;color:#b5a89e;border-bottom-left-radius:4px;border:1px solid #2e2929}
 .mt{font-size:8px;opacity:.35;margin-top:1px}
-.cin{padding:10px 14px;border-top:1px solid #2e2929;display:flex;gap:8px;background:#121010;flex-shrink:0;min-height:50px}
-.cin input{flex:1;background:#211e1e;border:1px solid #2e2929;border-radius:10px;padding:10px 12px;color:#e8ddd5;font-size:14px;outline:none;font-family:'Inter',sans-serif;min-width:0}
+.cin{padding:10px 14px;border-top:1px solid #2e2929;display:flex;gap:8px;background:#121010;flex-shrink:0;min-height:54px;align-items:center}
+.cin input{flex:1;background:#211e1e;border:1px solid #2e2929;border-radius:10px;padding:10px 14px;color:#e8ddd5;font-size:15px;outline:none;font-family:'Inter',sans-serif;min-width:0}
 .cin input:focus{border-color:#c47a50}
+@media(max-width:768px){
+  .cin{padding:8px 10px;gap:6px}
+  .cin input{font-size:16px;padding:11px 14px}
+}
 
 /* ===== TASKS ===== */
-.tk{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:9px;border:1px solid #2e2929;background:#211e1e;transition:all .12s}
+.tk{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:9px;border:1px solid #2e2929;background:#211e1e;transition:all .12s}
 .tk:hover{background:#2a2525}
 .tk.dn{opacity:.35}
 .tk.dn .tx{text-decoration:line-through;color:#7a6e66}
-.ck{width:22px;height:22px;border-radius:6px;border:2px solid #2e2929;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .12s;-webkit-appearance:none}
+.ck{width:24px;height:24px;border-radius:6px;border:2px solid #2e2929;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .12s;-webkit-appearance:none}
 .ck:hover{border-color:#6aad7a}
 .tk.dn .ck{background:#6aad7a;border-color:#6aad7a}
+@media(max-width:768px){
+  .tk{padding:13px 12px;gap:10px}
+  .ck{width:26px;height:26px}
+}
 
 /* ===== EVENTS ===== */
 .ev{background:#211e1e;border:1px solid #2e2929;border-radius:9px;padding:13px;position:relative;overflow:hidden;transition:all .12s}
@@ -97,28 +122,45 @@ body{background:#121010;color:#e8ddd5;font-family:'Inter',sans-serif;font-size:1
 .inp{background:#211e1e;border:1px solid #2e2929;border-radius:8px;padding:9px 12px;color:#e8ddd5;font-size:14px;outline:none;font-family:'Inter',sans-serif;width:100%;min-height:42px;-webkit-appearance:none}
 .inp:focus{border-color:#c47a50}
 .inp-d{color-scheme:dark}
+@media(max-width:768px){
+  .inp{font-size:16px;min-height:46px;padding:11px 12px;border-radius:10px}
+}
 .sep{display:flex;align-items:center;gap:8px;color:#7a6e66;font-size:10px;margin:14px 0}.sep::before,.sep::after{content:'';flex:1;height:1px;background:#2e2929}
 .empty{display:flex;flex-direction:column;align-items:center;padding:40px 16px;color:#7a6e66;text-align:center}.empty i{font-size:28px;margin-bottom:8px;opacity:.2}.empty p{font-size:11px;max-width:200px;line-height:1.5}
 .fi{animation:fi .2s ease}@keyframes fi{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
-.cat-bg{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:80;display:none;align-items:center;justify-content:center}.cat-bg.vis{display:flex}
-.cat-bx{background:#211e1e;border:1px solid #2e2929;border-radius:12px;padding:18px;width:300px;max-width:88vw}
-.cr{display:flex;align-items:center;gap:6px;padding:6px}.cr:hover{background:rgba(255,255,255,.02)}
+.cat-bg{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:80;display:none;align-items:flex-end;justify-content:center}.cat-bg.vis{display:flex}
+.cat-bx{background:#1e1b1b;border-top:1px solid #2e2929;border-radius:16px 16px 0 0;padding:20px 16px 24px;width:100%;max-width:400px;animation:su .25s ease}
+@keyframes su{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@media(min-width:769px){.cat-bg{align-items:center}.cat-bx{border-radius:12px;border:1px solid #2e2929;animation:none;max-width:320px}}
+.cr{display:flex;align-items:center;gap:6px;padding:8px 6px;border-radius:8px}.cr:hover{background:rgba(255,255,255,.02)}
 .rni{background:#211e1e;border:1px solid #c47a50;border-radius:5px;padding:2px 6px;color:#e8ddd5;font-size:11px;outline:none;font-family:'Inter',sans-serif}
-#toasts{position:fixed;top:10px;right:10px;z-index:200;display:flex;flex-direction:column;gap:4px;pointer-events:none}
-.toast{padding:8px 12px;border-radius:7px;font-size:11px;font-weight:500;transform:translateX(110%);transition:transform .3s;pointer-events:auto}
-.toast.show{transform:translateX(0)}
+#toasts{position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;gap:4px;pointer-events:none;width:max-content;max-width:90vw}
+.toast{padding:8px 14px;border-radius:8px;font-size:11px;font-weight:500;transform:translateY(-20px);opacity:0;transition:all .3s;pointer-events:auto;text-align:center}
+.toast.show{transform:translateY(0);opacity:1}
 .t-ok{background:rgba(106,173,122,.12);color:#6aad7a;border:1px solid rgba(106,173,122,.2)}
 .t-er{background:rgba(196,90,90,.12);color:#c45a5a;border:1px solid rgba(196,90,90,.2)}
+
+/* Mobile-specific helpers */
+.mob-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none}
+.mob-scroll::-webkit-scrollbar{display:none}
+.mob-form-stack{display:flex;gap:8px}
+@media(max-width:768px){.mob-form-stack{flex-direction:column}}
+
+/* Page dots bigger on mobile for touch */
+@media(max-width:768px){
+  .pdot{width:8px;height:8px}
+  .pdot.on{width:22px;height:8px;border-radius:4px}
+}
 </style>
 </head>
 <body>
 <div id="toasts"></div>
 <div class="cat-bg" id="catM"></div>
 
-<div class="shell">
-  <!-- Mobile nav -->
-  <nav class="mob-nav" id="mobNav"></nav>
+<!-- Bottom mobile nav (outside shell, fixed) -->
+<nav class="mob-nav" id="mobNav"></nav>
 
+<div class="shell">
   <!-- Sidebar desktop -->
   <aside class="side" id="side">
     <div class="sb-logo"><div style="display:flex;align-items:center;gap:7px"><div style="width:26px;height:26px;background:#c47a50;border-radius:6px;display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-feather" style="color:#121010;font-size:10px"></i></div><div><h2>Mi Escritorio</h2><p>Compartido</p></div></div></div>
@@ -159,7 +201,7 @@ function buildNav(){
   var sh='',mh='';
   NAV.forEach(function(n){
     sh+='<div class="sb-i'+(sec===n.id?' on':'')+'" onclick="go(\''+n.id+'\')"><i class="fa-solid '+n.i+'"></i><span>'+n.l+'</span></div>';
-    mh+='<div class="mob-t'+(sec===n.id?' on':'')+'" onclick="go(\''+n.id+'\')"><i class="fa-solid '+n.i+'"></i></div>';
+    mh+='<div class="mob-t'+(sec===n.id?' on':'')+'" onclick="go(\''+n.id+'\')"><i class="fa-solid '+n.i+'"></i><span>'+n.l+'</span></div>';
   });
   document.getElementById('sbList').innerHTML=sh;
   document.getElementById('mobNav').innerHTML=mh;
@@ -189,7 +231,33 @@ function rBooks(){
   var fb=bcf==='all'?S.books:S.books.filter(function(b){return b.cat===bcf});
   var bkh='';fb.forEach(function(b){bkh+='<div class="btab'+(b.id===bid?' on':'')+'" onclick="selBk('+b.id+')" ondblclick="rnBk('+b.id+',this)">'+esc(b.title)+'<span style="font-size:7px;opacity:.3;margin-left:3px">'+esc(b.cat)+'</span><span onclick="event.stopPropagation();delBk('+b.id+')" style="margin-left:3px;font-size:7px;opacity:.3;cursor:pointer"><i class="fa-solid fa-xmark"></i></span></div>'});
   var dh='';for(var i=0;i<book.pages.length;i++)dh+='<div class="pdot'+(i===pi?' on':'')+'" onclick="goP('+i+')"></div>';
-  return'<div class="hdr"><h1 style="font-family:Lora,serif;font-size:17px">Libros</h1><div style="display:flex;gap:5px;flex-wrap:wrap"><button class="bt bg bs" onclick="document.getElementById(\'fInp\').click()"><i class="fa-solid fa-file-import"></i> Importar</button><button class="bt bg bs" onclick="addPg()"><i class="fa-solid fa-plus"></i> Pag</button><button class="bt bd bs" onclick="delPg()"><i class="fa-solid fa-trash"></i></button><button class="bt bg bs" onclick="openCat()"><i class="fa-solid fa-tag"></i></button><button class="bt bw bs" onclick="addBk()"><i class="fa-solid fa-plus"></i> Libro</button><button class="bt bg bs" onclick="dlBook()"><i class="fa-solid fa-download"></i></button></div></div><div class="fi" style="padding:12px;max-width:720px;margin:0 auto"><div style="display:flex;gap:4px;margin-bottom:10px;overflow-x:auto;flex-wrap:wrap">'+cTabs()+'</div><div style="display:flex;gap:4px;margin-bottom:10px;overflow-x:auto">'+bkh+'</div><div style="display:flex;align-items:center;margin-bottom:8px"><button class="bt bg bi" onclick="flip(-1)" '+(pi<=0?'disabled style="opacity:.2"':'')+'><i class="fa-solid fa-chevron-left"></i></button><div style="display:flex;gap:4px;flex:1;justify-content:center">'+dh+'</div><button class="bt bg bi" onclick="flip(1)" '+(pi>=book.pages.length-1?'disabled style="opacity:.2"':'')+'><i class="fa-solid fa-chevron-right"></i></button></div><div style="text-align:center;font-size:9px;color:#7a6e66;font-family:Lora,serif;font-style:italic;margin-bottom:6px">Pagina '+(pi+1)+' de '+book.pages.length+'</div><div class="bkpg" id="bkPg"><textarea placeholder="Escribe aqui...">'+(page?page.c:'')+'</textarea></div></div>';
+
+  /* Header con labels ocultos en mobile via class mob-lbl */
+  var hdrBtns='<div style="display:flex;gap:5px;flex-wrap:wrap">'
+    +'<button class="bt bg bs" onclick="document.getElementById(\'fInp\').click()"><i class="fa-solid fa-file-import"></i><span class="mob-lbl"> Importar</span></button>'
+    +'<button class="bt bg bs" onclick="addPg()"><i class="fa-solid fa-plus"></i><span class="mob-lbl"> Pag</span></button>'
+    +'<button class="bt bd bs" onclick="delPg()"><i class="fa-solid fa-trash"></i></button>'
+    +'<button class="bt bg bs" onclick="openCat()"><i class="fa-solid fa-tag"></i></button>'
+    +'<button class="bt bw bs" onclick="addBk()"><i class="fa-solid fa-plus"></i><span class="mob-lbl"> Libro</span></button>'
+    +'<button class="bt bg bs" onclick="dlBook()"><i class="fa-solid fa-download"></i></button>'
+    +'</div>';
+
+  return'<div class="hdr"><h1 style="font-family:Lora,serif;font-size:17px">Libros</h1>'+hdrBtns+'</div>'
+    +'<div class="fi" style="padding:12px;max-width:720px;margin:0 auto">'
+    /* Categorias scrollable */
+    +'<div class="mob-scroll" style="margin-bottom:10px"><div style="display:flex;gap:4px;flex-wrap:nowrap">'+cTabs()+'</div></div>'
+    /* Libros scrollable */
+    +'<div class="mob-scroll" style="margin-bottom:10px"><div style="display:flex;gap:4px;flex-wrap:nowrap">'+bkh+'</div></div>'
+    /* Navegacion de paginas */
+    +'<div style="display:flex;align-items:center;margin-bottom:8px;gap:8px">'
+    +'<button class="bt bg bi" onclick="flip(-1)" '+(pi<=0?'disabled style="opacity:.2"':'')+'><i class="fa-solid fa-chevron-left"></i></button>'
+    +'<div style="display:flex;gap:5px;flex:1;justify-content:center;overflow-x:auto" class="mob-scroll">'+dh+'</div>'
+    +'<button class="bt bg bi" onclick="flip(1)" '+(pi>=book.pages.length-1?'disabled style="opacity:.2"':'')+'><i class="fa-solid fa-chevron-right"></i></button>'
+    +'</div>'
+    +'<div style="text-align:center;font-size:9px;color:#7a6e66;font-family:Lora,serif;font-style:italic;margin-bottom:6px">Pagina '+(pi+1)+' de '+book.pages.length+'</div>'
+    /* Pagina de libro */
+    +'<div class="bkpg" id="bkPg"><textarea placeholder="Escribe aqui...">'+(page?page.c:'')+'</textarea></div>'
+    +'</div>';
 }
 document.addEventListener('input',function(e){if(e.target.matches('#bkPg textarea')){var p=pg();if(p){p.c=e.target.value;sv()}}});
 function selBk(id){bid=id;pi=0;render()}function goP(i){pi=i;render()}function flip(d){var b=bk(),n=pi+d;if(n<0||n>=b.pages.length)return;pi=n;render()}
@@ -202,7 +270,27 @@ function dlBook(){var b=bk();if(!b)return;var txt='';for(var i=0;i<b.pages.lengt
 document.getElementById('fInp').addEventListener('change',function(){var f=this.files[0];if(!f)return;var r=new FileReader();r.onload=function(e){var p=pg();if(p){p.c+=(p.c?'\n\n':'')+e.target.result;sv();render();toast('Importado')}};r.readAsText(f);this.value=''});
 
 /* Categorias */
-function openCat(){var h='<div class="cat-bx"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><span style="font-family:Lora,serif;font-size:13px;font-weight:600">Categorias</span><button class="bt bg bi" onclick="document.getElementById(\'catM\').classList.remove(\'vis\')"><i class="fa-solid fa-xmark"></i></button></div>';S.cats.forEach(function(c,i){h+='<div class="cr"><span style="font-size:11px;flex:1;color:#b5a89e">'+esc(c)+'</span><button class="bt bg bs" onclick="rnCat('+i+',this)" style="padding:2px 5px"><i class="fa-solid fa-pen" style="font-size:8px"></i></button><button class="bt bd bs" onclick="delCat('+i+')" style="padding:2px 5px"><i class="fa-solid fa-trash" style="font-size:8px"></i></button></div>'});h+='<div style="display:flex;gap:5px;margin-top:10px"><input id="ncI" class="inp" placeholder="Nueva..." onkeydown="if(event.key===\'Enter\')addCat()"><button class="bt bw bs" onclick="addCat()"><i class="fa-solid fa-plus"></i></button></div></div>';document.getElementById('catM').innerHTML=h;document.getElementById('catM').classList.add('vis');setTimeout(function(){var i=document.getElementById('ncI');if(i)i.focus()},80)}
+function openCat(){
+  var h='<div class="cat-bx">'
+    +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">'
+    +'<span style="font-family:Lora,serif;font-size:14px;font-weight:600">Categorias</span>'
+    +'<button class="bt bg bi" onclick="document.getElementById(\'catM\').classList.remove(\'vis\')"><i class="fa-solid fa-xmark"></i></button>'
+    +'</div>';
+  S.cats.forEach(function(c,i){
+    h+='<div class="cr">'
+    +'<span style="font-size:12px;flex:1;color:#b5a89e">'+esc(c)+'</span>'
+    +'<button class="bt bg bs" onclick="rnCat('+i+',this)" style="padding:4px 7px"><i class="fa-solid fa-pen" style="font-size:9px"></i></button>'
+    +'<button class="bt bd bs" onclick="delCat('+i+')" style="padding:4px 7px"><i class="fa-solid fa-trash" style="font-size:9px"></i></button>'
+    +'</div>';
+  });
+  h+='<div class="mob-form-stack" style="margin-top:14px;gap:8px">'
+    +'<input id="ncI" class="inp" placeholder="Nueva categoria..." onkeydown="if(event.key===\'Enter\')addCat()" style="flex:1">'
+    +'<button class="bt bw" onclick="addCat()" style="min-height:46px"><i class="fa-solid fa-plus"></i></button>'
+    +'</div></div>';
+  document.getElementById('catM').innerHTML=h;
+  document.getElementById('catM').classList.add('vis');
+  setTimeout(function(){var i=document.getElementById('ncI');if(i)i.focus()},100);
+}
 function addCat(){var i=document.getElementById('ncI');if(!i)return;var v=i.value.trim();if(!v)return;S.cats.push(v);sv();openCat();toast('Añadida')}
 function delCat(idx){if(S.cats.length<=1){toast('Minimo una','er');return}var nm=S.cats[idx];if(!confirm('Eliminar "'+nm+'"?'))return;S.books.forEach(function(x){if(x.cat===nm)x.cat=S.cats[0]});S.cats.splice(idx,1);sv();openCat();toast('Eliminada','er')}
 function rnCat(idx,btn){var old=S.cats[idx],row=btn.closest('.cr'),inp=document.createElement('input');inp.className='rni';inp.value=old;inp.onblur=function(){var v=inp.value.trim();if(v&&v!==old){S.books.forEach(function(x){if(x.cat===old)x.cat=v});S.cats[idx]=v;sv()}openCat()};inp.onkeydown=function(e){if(e.key==='Enter')inp.blur();if(e.key==='Escape')openCat()};row.querySelector('span').replaceWith(inp);inp.focus();inp.select()}
@@ -211,11 +299,46 @@ function rnCat(idx,btn){var old=S.cats[idx],row=btn.closest('.cr'),inp=document.
 function rTasks(){
   var pend=S.tasks.filter(function(t){return!t.done}),done=S.tasks.filter(function(t){return t.done});
   var now=new Date();now.setHours(0,0,0,0);var up=S.events.filter(function(e){return new Date(e.date)>=now}),past=S.events.filter(function(e){return new Date(e.date)<now});
-  var th='';if(!pend.length&&!done.length)th='<div class="empty" style="padding:20px"><i class="fa-solid fa-list-check"></i><p>Sin tareas.</p></div>';else{th='<div style="display:flex;flex-direction:column;gap:5px">';pend.forEach(function(t){th+=rTk(t)});if(done.length){th+='<div class="sep"><span>'+done.length+' hecha'+(done.length>1?'s':'')+'</span></div>';done.forEach(function(t){th+=rTk(t)})}th+='</div>'}
-  var eh='';if(!S.events.length)eh='<div class="empty" style="padding:20px"><i class="fa-solid fa-calendar"></i><p>Sin eventos.</p></div>';else{eh='<div style="display:flex;flex-direction:column;gap:6px">';up.forEach(function(e){eh+=rEv(e)});if(past.length){eh+='<div class="sep"><span>Pasados</span></div>';past.forEach(function(e){eh+=rEv(e,true)})}eh+='</div>'}
-  return'<div class="hdr"><h1 style="font-family:Lora,serif;font-size:17px">Tareas y Eventos</h1></div><div class="fi" style="padding:12px 14px;max-width:620px;margin:0 auto"><div style="display:flex;gap:8px;margin-bottom:12px"><input id="tkI" class="inp" placeholder="Nueva tarea..." onkeydown="if(event.key===\'Enter\')addTk()"><button class="bt bgr" onclick="addTk()"><i class="fa-solid fa-plus"></i> Tarea</button></div>'+th+'<div class="sep"><span>Eventos</span></div><div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap"><input id="evT" class="inp" placeholder="Evento" style="flex:2"><input id="evD" type="date" class="inp inp-d" style="flex:1"><button class="bt bw" onclick="addEv()"><i class="fa-solid fa-plus"></i> Evento</button></div>'+eh+'</div>'}
-function rTk(t){return'<div class="tk'+(t.done?' dn':'')+'"><div class="ck" onclick="togTk(\''+t._id+'\','+!t.done+')">'+(t.done?'<i class="fa-solid fa-check" style="font-size:9px;color:#fff"></i>':'')+'</div><span class="tx" style="flex:1;font-size:13px;color:'+(t.done?'#7a6e66':'#b5a89e')+'">'+esc(t.text)+'</span><button class="bt bd bi" style="width:24px;height:24px" onclick="delTk(\''+t._id+'\')"><i class="fa-solid fa-trash" style="font-size:8px"></i></button></div>'}
-function rEv(e,old){var d=dL(e.date),lb,cl;if(old){lb='Pasado';cl='eb-o'}else if(d===0){lb='Hoy';cl='eb-t'}else if(d<=7){lb=d+' dia'+(d>1?'s':'');cl='eb-s'}else{lb=d+' dias';cl='eb-l'}return'<div class="ev'+(old?' old':'')+'"><div class="eb '+cl+'">'+lb+'</div><div style="display:flex;justify-content:space-between;align-items:start;gap:8px"><div style="padding-right:48px;min-width:0"><div style="font-size:13px;font-weight:500">'+esc(e.title)+'</div><div style="font-size:10px;color:#7a6e66;margin-top:2px"><i class="fa-regular fa-calendar" style="margin-right:2px"></i>'+fD(e.date)+'</div></div><button class="bt bd bi" style="width:24px;height:24px;margin-top:1px" onclick="delEv(\''+e._id+'\')"><i class="fa-solid fa-trash" style="font-size:8px"></i></button></div></div>'}
+
+  var th='';
+  if(!pend.length&&!done.length)th='<div class="empty" style="padding:20px"><i class="fa-solid fa-list-check"></i><p>Sin tareas.</p></div>';
+  else{
+    th='<div style="display:flex;flex-direction:column;gap:6px">';
+    pend.forEach(function(t){th+=rTk(t)});
+    if(done.length){th+='<div class="sep"><span>'+done.length+' hecha'+(done.length>1?'s':'')+'</span></div>';done.forEach(function(t){th+=rTk(t)})}
+    th+='</div>';
+  }
+
+  var eh='';
+  if(!S.events.length)eh='<div class="empty" style="padding:20px"><i class="fa-solid fa-calendar"></i><p>Sin eventos.</p></div>';
+  else{
+    eh='<div style="display:flex;flex-direction:column;gap:6px">';
+    up.forEach(function(e){eh+=rEv(e)});
+    if(past.length){eh+='<div class="sep"><span>Pasados</span></div>';past.forEach(function(e){eh+=rEv(e,true)})}
+    eh+='</div>';
+  }
+
+  /* Formularios apilados en mobile via mob-form-stack */
+  return'<div class="hdr"><h1 style="font-family:Lora,serif;font-size:17px">Tareas y Eventos</h1></div>'
+    +'<div class="fi" style="padding:12px 14px;max-width:620px;margin:0 auto">'
+    /* Form tarea */
+    +'<div class="mob-form-stack" style="margin-bottom:14px">'
+    +'<input id="tkI" class="inp" placeholder="Nueva tarea..." onkeydown="if(event.key===\'Enter\')addTk()" style="flex:1">'
+    +'<button class="bt bgr" onclick="addTk()" style="min-height:46px"><i class="fa-solid fa-plus"></i><span class="mob-lbl"> Tarea</span></button>'
+    +'</div>'
+    +th
+    +'<div class="sep" style="margin:18px 0"><span>Eventos</span></div>'
+    /* Form evento - apilado en mobile */
+    +'<div class="mob-form-stack" style="margin-bottom:12px">'
+    +'<input id="evT" class="inp" placeholder="Nombre del evento" style="flex:1">'
+    +'<input id="evD" type="date" class="inp inp-d" style="flex:1">'
+    +'<button class="bt bw" onclick="addEv()" style="min-height:46px"><i class="fa-solid fa-plus"></i><span class="mob-lbl"> Evento</span></button>'
+    +'</div>'
+    +eh
+    +'</div>';
+}
+function rTk(t){return'<div class="tk'+(t.done?' dn':'')+'"><div class="ck" onclick="togTk(\''+t._id+'\','+!t.done+')">'+(t.done?'<i class="fa-solid fa-check" style="font-size:10px;color:#fff"></i>':'')+'</div><span class="tx" style="flex:1;font-size:13px;color:'+(t.done?'#7a6e66':'#b5a89e')+'">'+esc(t.text)+'</span><button class="bt bd bi" style="width:28px;height:28px;flex-shrink:0" onclick="delTk(\''+t._id+'\')"><i class="fa-solid fa-trash" style="font-size:9px"></i></button></div>'}
+function rEv(e,old){var d=dL(e.date),lb,cl;if(old){lb='Pasado';cl='eb-o'}else if(d===0){lb='Hoy';cl='eb-t'}else if(d<=7){lb=d+' dia'+(d>1?'s':'');cl='eb-s'}else{lb=d+' dias';cl='eb-l'}return'<div class="ev'+(old?' old':'')+'"><div class="eb '+cl+'">'+lb+'</div><div style="display:flex;justify-content:space-between;align-items:start;gap:8px"><div style="padding-right:48px;min-width:0"><div style="font-size:13px;font-weight:500">'+esc(e.title)+'</div><div style="font-size:10px;color:#7a6e66;margin-top:2px"><i class="fa-regular fa-calendar" style="margin-right:2px"></i>'+fD(e.date)+'</div></div><button class="bt bd bi" style="width:28px;height:28px;margin-top:1px;flex-shrink:0" onclick="delEv(\''+e._id+'\')"><i class="fa-solid fa-trash" style="font-size:9px"></i></button></div></div>'}
 function addTk(){var i=document.getElementById('tkI'),t=i.value.trim();if(!t)return;db.collection('tasks').doc('tk_'+Date.now()).set({text:t,done:false,t:Date.now()});i.value='';toast('Tarea añadida')}
 function togTk(id,d){db.collection('tasks').doc(id).update({done:d})}
 function delTk(id){db.collection('tasks').doc(id).delete();toast('Eliminada','er')}
@@ -226,13 +349,15 @@ function delEv(id){db.collection('events').doc(id).delete();toast('Eliminado','e
 function rChat(){
   var h='';if(!chat.length)h='<div class="empty" style="height:100%;padding:36px 16px"><i class="fa-solid fa-comment"></i><p>Escribe algo.<br>Se sincroniza en tiempo real.</p></div>';
   else chat.forEach(function(m){h+='<div><div class="msg '+(m.tp==='s'?'s':'r')+'">'+esc(m.tx)+'</div><div class="mt '+(m.tp==='s'?'text-right':'text-left')+'">'+fT(m.t)+'</div></div>'});
-  return'<div class="cbox"><div class="cmsgs" id="cMsgs">'+h+'</div><div class="cin"><input id="cInp" placeholder="Escribe aqui..." onkeydown="if(event.key===\'Enter\')sendMsg()" autocomplete="off"><button class="bt bw bi" style="width:40px" onclick="sendMsg()"><i class="fa-solid fa-paper-plane"></i></button></div></div>';
+  return'<div class="cbox"><div class="cmsgs" id="cMsgs">'+h+'</div><div class="cin"><input id="cInp" placeholder="Escribe aqui..." onkeydown="if(event.key===\'Enter\')sendMsg()" autocomplete="off"><button class="bt bw" style="width:42px;height:42px;flex-shrink:0" onclick="sendMsg()"><i class="fa-solid fa-paper-plane"></i></button></div></div>';
 }
 function sendMsg(){var i=document.getElementById('cInp'),t=i.value.trim();if(!t)return;i.value='';rt.ref('chat').push().set({tp:'s',tx:t,t:firebase.database.ServerValue.TIMESTAMP});var c=document.getElementById('cMsgs');if(c)setTimeout(function(){c.scrollTop=c.scrollHeight},60)}
-function clrChat(){if(!confirm('Limpiar chat?'))return;rt.ref('chat').remove();toast('Limpiado','er')}
 
 /* Atajos */
 document.addEventListener('keydown',function(e){if(sec==='books'&&!e.target.matches('textarea,input')){if(e.key==='ArrowLeft')flip(-1);if(e.key==='ArrowRight')flip(1)}if(e.key==='Escape')document.getElementById('catM').classList.remove('vis')});
+
+/* Cerrar modal de categorias al tocar el fondo */
+document.getElementById('catM').addEventListener('click',function(e){if(e.target===this)this.classList.remove('vis')});
 </script>
 </body>
 </html>
